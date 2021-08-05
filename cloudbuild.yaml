@@ -1,0 +1,3 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/ivory-channel-227917/boardgame-selector-container', '.' ]
