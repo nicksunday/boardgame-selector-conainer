@@ -5,6 +5,7 @@
 {{ super() }}
 	<style>
 		body { background: #e8f1f9; }
+                p { text-align: center; }
 	</style>
 {% endblock %}
 
@@ -19,6 +20,10 @@ Random Boardgame Selector
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <p><strong>Enter your boardgame geek username and</strong></p>
+      <p><strong>optionally enter the minimum number of players</strong></p>
+      <p><strong>to randomly select a game to play</strong></p>
 
       {{ wtf.quick_form(form) }}
 

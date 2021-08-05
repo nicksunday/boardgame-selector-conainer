@@ -25,10 +25,12 @@ Chosen Boardgame: {{ bg_name }}
 <div class="container">
   <img src="{{ bg_image }}" alt="Photo: {{ bg_name }}" class="img-fluid pt-6">
   <p><em>You should play {{ bg_name }}</em></p>
+  <p><em>Supports {{ min_players }}-{{ max_players }} Players</em></p>
   <p>
+    <em>Don't like your choice? Try</em>
     <a href="{{ url_for('boardgame') }}" class="btn btn-primary">AGAIN</a>
-    <a href="{{ url_for('index') }}">Return to home page</a>
   </p>
+  <p><a href="{{ url_for('index') }}">Return to home page</a></p>
 </div>
 
 {% endblock %}

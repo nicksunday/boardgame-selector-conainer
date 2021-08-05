@@ -21,8 +21,8 @@ app.config['SECRET_KEY'] = 'DB068F56-6044-4931-B2EB-6809FA3DD43C'
 Bootstrap(app)
 
 class BGGUserForm(FlaskForm):
-    username = StringField('BoardgameGeek Username: ', validators=[DataRequired()])
-    player_count = IntegerField('Minimum Player Count: ', validators=[Optional()])
+    username = StringField('Username', validators=[DataRequired()])
+    player_count = IntegerField('Minimum Player Count (Optional)', validators=[Optional()])
     submit = SubmitField('Submit')
 
 def get_random_boardgame(username, players):
@@ -38,10 +38,10 @@ def get_random_boardgame(username, players):
             if game.min_players <= players <= game.max_players:
                 sub_collection.append(game)
         random_game = randint(0, len(sub_collection) - 1)
-        return sub_collection[random_game].name, sub_collection[random_game].image
+        return sub_collection[random_game]
     else:
         random_game = randint(0, len(collection) - 1)
-        return collection[random_game].name, collection[random_game].image
+        return collection[random_game]
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -58,14 +58,16 @@ def index():
 @app.route('/boardgame/')
 def boardgame():
     """Displays the chosen boardgame"""
-    name, image = get_random_boardgame(
-                      session.get('username', None),
-                      session.get('player_count', None)
-                      )
+    game = get_random_boardgame(
+               session.get('username', None),
+               session.get('player_count', None)
+               )
     return render_template(
         'boardgame.html',
-        bg_name=name,
-        bg_image=image
+        bg_name=game.name,
+        bg_image=game.image,
+        min_players=game.min_players,
+        max_players=game.max_players
         )
 
 if __name__ == '__main__':
