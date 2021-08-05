@@ -1,0 +1,34 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e8f1f9; }
+                p { text-align: center; }
+                img {
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  width: 50%
+                }
+	</style>
+{% endblock %}
+
+
+{% block title %}
+Chosen Boardgame: {{ bg_name }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <img src="{{ bg_image }}" alt="Photo: {{ bg_name }}" class="img-fluid pt-6">
+  <p><em>You should play {{ bg_name }}</em></p>
+  <p>
+    <a href="{{ url_for('boardgame') }}" class="btn btn-primary">AGAIN</a>
+    <a href="{{ url_for('index') }}">Return to home page</a>
+  </p>
+</div>
+
+{% endblock %}
