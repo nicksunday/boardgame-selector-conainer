@@ -6,13 +6,9 @@ from flask import Flask, render_template, redirect, session, url_for
 from flask_session import Session
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from libbgg.apiv2 import BGG as BGG2
 from random import randint
-import ssl
 from wtforms import IntegerField, StringField, SubmitField
 from wtforms.validators import DataRequired, Optional, ValidationError
-
-ssl._create_default_https_context = ssl._create_unverified_context
 
 app = Flask(__name__)
 SESSION_TYPE = 'filesystem'
@@ -27,7 +23,6 @@ Bootstrap(app)
 
 bgg = BGGClient()
 
-
 class BGGUserForm(FlaskForm):
     username = StringField(
         label=('Username'),
@@ -37,9 +32,9 @@ class BGGUserForm(FlaskForm):
          validators=[Optional()])
     submit = SubmitField('Submit')
     def validate_username(self, username):
-        conn = BGG2()
-        results = conn.get_user(self.username.data)
-        if not results["user"]["id"]:
+        try:
+            bgg.user(username)
+        except:
             raise ValidationError("Boardgamegeek username not found.")
 
 def get_random_boardgame(username, players):
