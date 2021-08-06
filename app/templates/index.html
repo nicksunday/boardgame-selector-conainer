@@ -5,7 +5,10 @@
 {{ super() }}
 	<style>
 		body { background: #e8f1f9; }
-                p { text-align: center; }
+                .validation{
+                    color: #D63301;
+                    background-color: #FFCCBA;
+		}
 	</style>
 {% endblock %}
 
@@ -17,20 +20,29 @@ Random Boardgame Selector
 
 {% block content %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+<div class="container"> 
+  <h4>Random Boardgame Selector</h4>
+  {% for field, errors in form.errors.items() %}
+  <div class="validation">{{ ', '.join(errors) }}</div>
+  {% endfor %}
+  <p><em>
+    Using your BoardGameGeek Username get a random boardgame from your collection
+  </em></p>
 
-      <p><strong>Enter your boardgame geek username and</strong></p>
-      <p><strong>optionally enter the minimum number of players</strong></p>
-      <p><strong>to randomly select a game to play</strong></p>
-
-      {{ wtf.quick_form(form) }}
-
-      <p class="pt-5"><strong>{{ message }}</strong></p>
-
+  <form class="form-horizontal" method="POST" action="">
+    {{ form.csrf_token() }}
+    <div class="form-group">
+      {{ form.username.label }}
+      {{ form.username(class="form-control") }}
     </div>
-  </div>
+    <div class="form-group">
+      {{ form.player_count.label }}
+      {{ form.player_count(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn=primary") }}
+    </div>
+  </form>  
 </div>
 
 {% endblock %}

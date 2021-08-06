@@ -29,8 +29,12 @@ bgg = BGGClient()
 
 
 class BGGUserForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    player_count = IntegerField('Minimum Player Count (Optional)', validators=[Optional()])
+    username = StringField(
+        label=('Username'),
+        validators=[DataRequired()])
+    player_count = IntegerField(
+        label=('Minimum Player Count (Optional)'),
+         validators=[Optional()])
     submit = SubmitField('Submit')
     def validate_username(self, username):
         conn = BGG2()
