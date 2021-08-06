@@ -4,12 +4,15 @@
 {{ super() }}
 	<style>
 		body { background: #e8f1f9; }
+                div { display: block; }
                 p { text-align: center; }
                 img {
                   display: block;
                   margin-left: auto;
                   margin-right: auto;
-                  width: 50%
+                  max-width: 40%;
+                  max-height: 25%;
+                  height: auto;
                 }
 	</style>
 {% endblock %}
@@ -23,7 +26,7 @@ Chosen Boardgame: {{ bg_name }}
 {% block content %}
 
 <div class="container">
-  <img src="{{ bg_image }}" alt="Photo: {{ bg_name }}" class="img-fluid pt-6">
+  <img src="{{ bg_image }}" alt="Photo: {{ bg_name }}">
   <p><em>You should play {{ bg_name }}</em></p>
   <p><em>Supports {{ min_players }}-{{ max_players }} Players</em></p>
   <p>

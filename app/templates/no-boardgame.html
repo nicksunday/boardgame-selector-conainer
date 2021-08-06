@@ -1,0 +1,23 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e8f1f9; }
+                h3 { text-align: center; }
+	</style>
+{% endblock %}
+
+
+{% block title %}
+No Boardgame Found
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+   <h3>{{ message }}</h3>
+</div>
+
+{% endblock %}

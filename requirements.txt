@@ -3,6 +3,7 @@ Flask==1.1.2
 Flask-Session
 Flask-WTF
 Flask-Bootstrap4
+py-bgg
 redis
 requests==2.3.0
 requests_cache==0.4.13
