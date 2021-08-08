@@ -31,7 +31,9 @@ Chosen Boardgame: {{ bg_name }}
   <p><em>Supports {{ min_players }}-{{ max_players }} Players</em></p>
   <p>
     <em>Don't like your choice? Try</em>
-    <a href="{{ url_for('boardgame') }}" class="btn btn-primary">AGAIN</a>
+    <a href="{{ url_for('boardgame') }}" class="btn btn-primary">Again</a>
+    <em>or </em>
+    <a href="https://boardgamegeek.com/collection/user/{{ username }}">View entire collection</a>
   </p>
   <p><a href="{{ url_for('index') }}">Return to home page</a></p>
 </div>

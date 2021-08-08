@@ -97,7 +97,8 @@ def boardgame():
         bg_name=game.name,
         bg_image=game.image,
         min_players=game.min_players,
-        max_players=game.max_players
+        max_players=game.max_players,
+        username=session.get('username', None)
         )
 
 if __name__ == '__main__':
